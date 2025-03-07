@@ -179,6 +179,7 @@ dependencies {
     //TFC
     implementation fg.deobf("curse.maven:terrafirmacraft-${tfc_version}")
     implementation fg.deobf("curse.maven:patchouli-306770:6164575")
+    runtimeOnly(fg.deobf("curse.maven:jade-324717:5776962"))
 
     //JEI
     implementation fg.deobf("curse.maven:jei-238222:6075247")
