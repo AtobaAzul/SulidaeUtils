@@ -180,6 +180,9 @@ dependencies {
     implementation fg.deobf("curse.maven:terrafirmacraft-${tfc_version}")
     implementation fg.deobf("curse.maven:patchouli-306770:6164575")
 
+    //JEI
+    implementation fg.deobf("curse.maven:jei-238222:6075247")
+
     //Create
     implementation(fg.deobf("com.simibubi.create:create-${minecraft_version}:${create_version}:slim") { transitive = false })
     implementation(fg.deobf("net.createmod.ponder:Ponder-Forge-${minecraft_version}:${ponder_version}"))
@@ -209,11 +212,10 @@ dependencies {
     implementation fg.deobf("curse.maven:createaddition-439890:6256349")
 
     //more burners
-    implementation fg.deobf("curse.maven:more-create-burners-1111030:6104568")
+    implementation fg.deobf("curse.maven:more-create-burners-1111030:6275033")
 
     //diesel generators
     implementation fg.deobf("curse.maven:create-diesel-generators-869316:6268610")
-
 
     // Example mod dependency with JEI - using fg.deobf() ensures the dependency is remapped to your development mappings
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
