@@ -195,30 +195,25 @@ dependencies {
     implementation("io.github.llamalad7:mixinextras-forge:0.4.1")
 
     //Supplementaries/Amendments
-    //implementation fg.deobf("curse.maven:selene-499980:6249659")
-    //implementation fg.deobf("curse.maven:amendments-896746:6259599")
-    //implementation fg.deobf("curse.maven:supplementaries-412082:6255734")
+    implementation fg.deobf("curse.maven:selene-499980:6249659")
+    implementation fg.deobf("curse.maven:amendments-896746:6259599")
+    implementation fg.deobf("curse.maven:supplementaries-412082:6255734")
 
     //firmaciv
-    //implementation fg.deobf("curse.maven:firmaciv-714158:5737719")
-    //implementation fg.deobf("curse.maven:alekiships-1068445:5963449")
+    implementation fg.deobf("curse.maven:firmaciv-714158:5737719")
+    implementation fg.deobf("curse.maven:alekiships-1068445:5963449")
 
     // scorched guns.
-    //implementation fg.deobf("curse.maven:scorched-guns-802940:5931109")
-    //implementation fg.deobf("curse.maven:framework-549225:5911986")
-    //implementation fg.deobf("curse.maven:geckolib-388172:6027567")
-    //implementation fg.deobf("curse.maven:curios-309927:6238756")
-
-    //misc mod pseudo-dependecies (so I can have less warns/non-fatal errors in the logs)
-    //implementation fg.deobf("curse.maven:mekanism-268560:6258796")
-    //implementation fg.deobf("curse.maven:immersive-engineering-231951:6206989")
-    //implementation fg.deobf("curse.maven:embers-rekindled-300777:6156839")
+    implementation fg.deobf("curse.maven:scorched-guns-802940:5931109")
+    implementation fg.deobf("curse.maven:framework-549225:5911986")
+    implementation fg.deobf("curse.maven:geckolib-388172:6027567")
+    implementation fg.deobf("curse.maven:curios-309927:6238756")
 
     //create additions (so I have a means to power create more burners)
-    //implementation fg.deobf("curse.maven:createaddition-439890:6256349")
+    implementation fg.deobf("curse.maven:createaddition-439890:6256349")
 
     //more burners
-    //implementation fg.deobf("curse.maven:more-create-burners-1111030:6275033")
+    implementation fg.deobf("curse.maven:more-create-burners-1111030:6275033")
 
     //diesel generators
     implementation fg.deobf("curse.maven:create-diesel-generators-869316:6268610")

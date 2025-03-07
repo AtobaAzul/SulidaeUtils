@@ -6,10 +6,10 @@ import com.simibubi.create.content.redstone.displayLink.DisplayLinkContext;
 import com.simibubi.create.content.redstone.displayLink.source.SingleLineDisplaySource;
 import com.simibubi.create.content.redstone.displayLink.target.DisplayTargetStats;
 import com.simibubi.create.foundation.gui.ModularGuiLineBuilder;
-//import net.dries007.tfc.common.blockentities.BlastFurnaceBlockEntity;
-//import net.dries007.tfc.common.blockentities.CrucibleBlockEntity;
-//import net.dries007.tfc.common.blocks.TFCBlocks;
-//import net.dries007.tfc.config.TemperatureDisplayStyle;
+import net.dries007.tfc.common.blockentities.BlastFurnaceBlockEntity;
+import net.dries007.tfc.common.blockentities.CrucibleBlockEntity;
+import net.dries007.tfc.common.blocks.TFCBlocks;
+import net.dries007.tfc.config.TemperatureDisplayStyle;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraftforge.registries.DeferredRegister;
@@ -18,7 +18,7 @@ import net.minecraftforge.registries.RegistryObject;
 import java.util.List;
 
 public class SulidaeDisplaySources {
-    /*public static final DeferredRegister<DisplaySource> DISPLAY_SOURCES = DeferredRegister.create(CreateRegistries.DISPLAY_SOURCE, SulidaeUtils.MODID);
+    public static final DeferredRegister<DisplaySource> DISPLAY_SOURCES = DeferredRegister.create(CreateRegistries.DISPLAY_SOURCE, SulidaeUtils.MODID);
 
     public static final RegistryObject<DisplaySource> CRUCIBLE = DISPLAY_SOURCES.register("tfc_crucible", () -> {
         DisplaySource source = new CrucibleDisplaySource();
@@ -117,5 +117,5 @@ public class SulidaeDisplaySources {
         public Component getName() {
             return Component.translatable("block.tfc.blast_furnace");
         }
-    }*/
+    }
 }
