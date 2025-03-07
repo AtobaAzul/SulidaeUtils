@@ -2,11 +2,11 @@ package net.atobaazul.sulidae_utils;
 
 import com.mojang.logging.LogUtils;
 import net.createmod.ponder.foundation.PonderIndex;
-import net.dries007.tfc.common.capabilities.heat.HeatCapability;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
+//import net.dries007.tfc.common.capabilities.heat.HeatCapability;
+//import net.minecraft.sounds.SoundSource;
+//import net.minecraft.world.entity.player.Player;
+//import net.minecraft.world.item.ItemStack;
+//import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.server.ServerStartingEvent;
@@ -17,12 +17,12 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
-import top.ribs.scguns.common.Gun;
-import top.ribs.scguns.event.GunFireEvent;
-import top.ribs.scguns.init.ModSounds;
-import top.ribs.scguns.item.GunItem;
+//import top.ribs.scguns.common.Gun;
+//import top.ribs.scguns.event.GunFireEvent;
+//import top.ribs.scguns.init.ModSounds;
+//import top.ribs.scguns.item.GunItem;
 
-import static net.atobaazul.sulidae_utils.SulidaeDisplaySources.DISPLAY_SOURCES;
+//import static net.atobaazul.sulidae_utils.SulidaeDisplaySources.DISPLAY_SOURCES;
 
 /* The TODO list.
 - Prevent fueling blaze burners
@@ -43,7 +43,7 @@ public class SulidaeUtils {
         // Register the commonSetup method for modloading
         bus.addListener(this::commonSetup);
 
-        DISPLAY_SOURCES.register(bus);
+        //DISPLAY_SOURCES.register(bus);
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
     }
@@ -69,7 +69,7 @@ public class SulidaeUtils {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
 
-            PonderIndex.addPlugin(new SulidaePonderPlugin());
+            //PonderIndex.addPlugin(new SulidaePonderPlugin());
         }
     }
 
@@ -77,7 +77,7 @@ public class SulidaeUtils {
         return a + f * (b - a);
     }
 
-    @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
+   /* @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
     public static class ForgeEvents {
         @SubscribeEvent()
         public static void gunShootEvent(GunFireEvent event) {
@@ -118,5 +118,5 @@ public class SulidaeUtils {
                 }
             }
         }
-    }
+    }*/
 }
