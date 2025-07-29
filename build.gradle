@@ -185,11 +185,12 @@ dependencies {
     implementation fg.deobf("curse.maven:jei-238222:6075247")
 
     //Create
-    implementation(fg.deobf("com.simibubi.create:create-${minecraft_version}:${create_version}:slim") { transitive = false })
-    implementation(fg.deobf("net.createmod.ponder:Ponder-Forge-${minecraft_version}:${ponder_version}"))
-    compileOnly(fg.deobf("dev.engine-room.flywheel:flywheel-forge-api-${minecraft_version}:${flywheel_version}"))
-    runtimeOnly(fg.deobf("dev.engine-room.flywheel:flywheel-forge-${minecraft_version}:${flywheel_version}"))
-    implementation(fg.deobf("com.tterrag.registrate:Registrate:${registrate_version}"))
+    implementation(fg.deobf("com.simibubi.create:create-1.20.1:6.0.6-150:slim") { transitive = false })
+    compileOnly(fg.deobf("dev.engine-room.flywheel:flywheel-forge-api-1.20.1:1.0.4"))
+    runtimeOnly(fg.deobf("dev.engine-room.flywheel:flywheel-forge-1.20.1:1.0.4"))
+    implementation (fg.deobf("net.createmod.ponder:Ponder-Forge-1.20.1:1.0.80"))
+    implementation fg.deobf("com.tterrag.registrate:Registrate:MC1.20-1.3.3")
+
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
     compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:0.4.1"))
     implementation("io.github.llamalad7:mixinextras-forge:0.4.1")
@@ -216,7 +217,10 @@ dependencies {
     implementation fg.deobf("curse.maven:more-create-burners-1111030:6275033")
 
     //diesel generators
-    implementation fg.deobf("curse.maven:create-diesel-generators-869316:6268610")
+    implementation fg.deobf("curse.maven:create-diesel-generators-869316:6798614")
+
+    //arborfirmacraft
+    implementation fg.deobf("curse.maven:arborfirmacraft-877545:6814891")
 
     // Example mod dependency with JEI - using fg.deobf() ensures the dependency is remapped to your development mappings
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
@@ -289,9 +293,10 @@ publishing {
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
 }
-/*mixin {
+
+mixin {
     // MixinGradle Settings
     add sourceSets.main, 'sulidae_utils.refmap.json'
     config 'sulidae_utils.mixins.json'
-}*/
+}
 

@@ -1,12 +1,19 @@
 package net.atobaazul.sulidae_utils;
 
+import com.google.common.eventbus.Subscribe;
 import com.mojang.logging.LogUtils;
 import net.createmod.ponder.foundation.PonderIndex;
 import net.dries007.tfc.common.capabilities.heat.HeatCapability;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Vec3i;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.server.ServerStartingEvent;
@@ -16,9 +23,11 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.registries.RegisterEvent;
 import org.slf4j.Logger;
 import top.ribs.scguns.common.Gun;
 import top.ribs.scguns.event.GunFireEvent;
+import top.ribs.scguns.event.GunProjectileHitEvent;
 import top.ribs.scguns.init.ModSounds;
 import top.ribs.scguns.item.GunItem;
 
@@ -46,15 +55,22 @@ public class SulidaeUtils {
         DISPLAY_SOURCES.register(bus);
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
+
+        bus.addListener(SulidaeUtils::onRegister);
+    }
+
+    public static void onRegister(final RegisterEvent event) {
+        SulidaeArmInteractionTypes.init();
+    }
+
+    static float lerp(float a, float b, float f) {
+        return a + f * (b - a);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
         // Some common setup code
         //LOGGER.info("HELLO FROM COMMON SETUP");
-
-
     }
-
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call
     @SubscribeEvent
@@ -73,10 +89,6 @@ public class SulidaeUtils {
         }
     }
 
-    static float lerp(float a, float b, float f) {
-        return a + f * (b - a);
-    }
-
     @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
     public static class ForgeEvents {
         @SubscribeEvent()
@@ -89,6 +101,7 @@ public class SulidaeUtils {
 
         @SubscribeEvent()
         public static void gunPostShootEvent(GunFireEvent.Post event) {
+
             Player player = event.getEntity();
             Level level = event.getEntity().level();
             ItemStack item = event.getStack();
@@ -99,10 +112,10 @@ public class SulidaeUtils {
 
         @SubscribeEvent
         public static void gunPreShootEvent(GunFireEvent.Pre event) {
+
             Player player = event.getEntity();
             Level level = event.getEntity().level();
             ItemStack item = event.getStack();
-            System.out.println(lerp(1, 0, HeatCapability.getTemperature(item) / 1100f));
 
             if (HeatCapability.has(item) && HeatCapability.getTemperature(item) > 580 && item.getItem() instanceof GunItem gunItem) {
                 Gun gun = gunItem.getModifiedGun(item);

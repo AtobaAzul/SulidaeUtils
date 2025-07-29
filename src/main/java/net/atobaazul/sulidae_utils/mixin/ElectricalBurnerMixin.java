@@ -22,7 +22,7 @@ public abstract class ElectricalBurnerMixin extends BaseBurnerBlockEntity {
 
     //makes the electrical burner heat up crucibles
     @Inject(method= "tick", at = @At("HEAD"), remap = false)
-    private void ptfc_utils$onTick(CallbackInfo ci) {
+    private void sulidae_utils$onTick(CallbackInfo ci) {
         Level level = this.level;
 
         assert level != null;
