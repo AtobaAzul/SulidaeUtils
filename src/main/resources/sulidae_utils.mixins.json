@@ -7,7 +7,8 @@
   "mixins": [
     "BurnerBlockEntityMixin",
     "ElectricalBurnerMixin",
-    "FirmacivSloopUnderConstructionEntityMixin"
+    "FirmacivSloopUnderConstructionEntityMixin",
+    "MechanicalFanMixin"
   ],
   "injectors": {
     "defaultRequire": 1
