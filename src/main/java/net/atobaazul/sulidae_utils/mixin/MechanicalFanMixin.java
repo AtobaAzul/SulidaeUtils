@@ -30,7 +30,6 @@ public class MechanicalFanMixin extends KineticBlockEntity {
         if (level != null && this.getSpeed() != 0) {
             final Direction direction = getBlockState().getValue(BlockStateProperties.FACING);
 
-
             if (!direction.getAxis().isVertical()) {
                 for (IBellowsConsumer.Offset offset : IBellowsConsumer.offsets()) {
                     final BlockPos airPosition = worldPosition.above(offset.up()).relative(direction, offset.out()).relative(direction.getClockWise(), offset.side());
@@ -41,7 +40,7 @@ public class MechanicalFanMixin extends KineticBlockEntity {
                         CompoundTag nbt = be.serializeNBT();
                         int airTicks = nbt.getInt("airTicks");
 
-                        if (consumer.canAcceptAir(level, airPosition, state) && airTicks <= 1) { //offset by 1 because wasn't properly hitting max temp.
+                        if (consumer.canAcceptAir(level, airPosition, state) && airTicks <= 1) { //offset by 1 because wasn't properly hitting max temp???
                             consumer.intakeAir(level, airPosition, state, (int) (BELLOWS_AIR + Math.abs(this.getSpeed())));
                         }
                     }
