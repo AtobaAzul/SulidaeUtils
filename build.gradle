@@ -1,6 +1,4 @@
 buildscript {
-
-
     repositories {
         // These repositories are only for Gradle plugins, put any other repositories in the repository block further below
         maven { url = "https://mvn.devos.one/releases" } // Porting Lib Releases
@@ -32,6 +30,15 @@ plugins {
 }
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'org.spongepowered.mixin'
+
+repositories {
+    maven { // Ritchie's Projectile Library
+        url = "https://maven.realrobotix.me/master/"
+        content {
+            includeGroup("com.rbasamoyai") // THIS IS IMPORTANT
+        }
+    }
+}
 
 version = mod_version
 group = mod_group_id
@@ -185,11 +192,15 @@ dependencies {
     implementation fg.deobf("curse.maven:jei-238222:6075247")
 
     //Create
-    implementation(fg.deobf("com.simibubi.create:create-1.20.1:6.0.6-150:slim") { transitive = false })
+    implementation(fg.deobf("com.simibubi.create:create-1.20.1:6.0.8-289:slim") { transitive = false })
     compileOnly(fg.deobf("dev.engine-room.flywheel:flywheel-forge-api-1.20.1:1.0.4"))
     runtimeOnly(fg.deobf("dev.engine-room.flywheel:flywheel-forge-1.20.1:1.0.4"))
     implementation (fg.deobf("net.createmod.ponder:Ponder-Forge-1.20.1:1.0.80"))
     implementation fg.deobf("com.tterrag.registrate:Registrate:MC1.20-1.3.3")
+
+    //cbc
+    implementation fg.deobf("com.rbasamoyai:ritchiesprojectilelib:2.1.1+mc.1.20.1-forge-build.195") { transitive = false }
+    implementation fg.deobf("curse.maven:create-big-cannons-646668:8169547")
 
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
     compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:0.4.1"))

@@ -1,17 +1,18 @@
 package net.atobaazul.sulidae_utils;
 
-import com.google.common.eventbus.Subscribe;
 import com.mojang.logging.LogUtils;
 import net.createmod.ponder.foundation.PonderIndex;
 import net.dries007.tfc.common.capabilities.heat.HeatCapability;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.Vec3i;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
@@ -25,7 +26,10 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.RegisterEvent;
 import org.slf4j.Logger;
+import rbasamoyai.createbigcannons.CBCTags;
+import rbasamoyai.createbigcannons.effects.particles.impacts.SparkBurstParticleData;
 import top.ribs.scguns.common.Gun;
+import top.ribs.scguns.entity.projectile.ProjectileEntity;
 import top.ribs.scguns.event.GunFireEvent;
 import top.ribs.scguns.event.GunProjectileHitEvent;
 import top.ribs.scguns.init.ModSounds;
@@ -128,6 +132,32 @@ public class SulidaeUtils {
                     }
                     event.getEntity().getCooldowns().addCooldown(event.getStack().getItem(), coolDown);
                     event.setCanceled(true);
+                }
+            }
+        }
+
+        @SubscribeEvent
+        public static void gunProjectileHitEvent(GunProjectileHitEvent event) {
+            ProjectileEntity projectile = event.getProjectile();
+            HitResult hitResult = event.getRayTrace();
+            Level level = projectile.level();
+
+            if (!level.isClientSide) {
+                if (hitResult.getType() == HitResult.Type.BLOCK) {
+                    ServerLevel sLevel = (ServerLevel) level;
+                    BlockHitResult bHitResult = (BlockHitResult) hitResult;
+                    BlockPos pos = bHitResult.getBlockPos();
+                    BlockState state = level.getBlockState(pos);
+                    Direction opposite = bHitResult.getDirection();
+
+                    Vec3 cPos = pos.relative(opposite).getCenter();
+                    Vec3 speed = projectile.getDeltaMovement();
+                    Vec3 mSpeed = new Vec3(speed.x, -speed.y, speed.z).scale(0.5);
+
+
+                    if (state.is(CBCTags.CBCBlockTags.SPARK_EFFECT_ON_IMPACT)) {
+                        sLevel.sendParticles(new SparkBurstParticleData(new Vec3(1, 1, 1).toVector3f(), false, 1 + level.getRandom().nextIntBetweenInclusive(3, 4)), cPos.x, cPos.y, cPos.z, 0, mSpeed.x, mSpeed.y, mSpeed.z, 0.5f);
+                    }
                 }
             }
         }
