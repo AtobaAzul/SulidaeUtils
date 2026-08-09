@@ -216,7 +216,7 @@ dependencies {
     implementation fg.deobf("curse.maven:alekiships-1068445:5963449")
 
     // scorched guns.
-    implementation fg.deobf("curse.maven:scorched-guns-802940:5931109")
+    implementation fg.deobf("curse.maven:scorched-guns-802940:7232063")
     implementation fg.deobf("curse.maven:framework-549225:5911986")
     implementation fg.deobf("curse.maven:geckolib-388172:6027567")
     implementation fg.deobf("curse.maven:curios-309927:6238756")
