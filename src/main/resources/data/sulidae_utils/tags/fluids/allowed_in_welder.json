@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "createdieselgenerators:diesel",
+    "createdieselgenerators:gasoline",
+    "createdieselgenerators:biodiesel",
+    "createdieselgenerators:ethanol"
+  ]
+}

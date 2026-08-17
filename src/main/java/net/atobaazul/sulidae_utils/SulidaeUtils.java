@@ -1,17 +1,21 @@
 package net.atobaazul.sulidae_utils;
 
 import com.mojang.logging.LogUtils;
+import net.atobaazul.sulidae_utils.registries.SulidaeItems;
 import net.createmod.ponder.foundation.PonderIndex;
 import net.dries007.tfc.common.capabilities.heat.HeatCapability;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.Vec3i;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
@@ -35,7 +39,7 @@ import top.ribs.scguns.event.GunProjectileHitEvent;
 import top.ribs.scguns.init.ModSounds;
 import top.ribs.scguns.item.GunItem;
 
-import static net.atobaazul.sulidae_utils.SulidaeDisplaySources.DISPLAY_SOURCES;
+import static net.atobaazul.sulidae_utils.registries.SulidaeDisplaySources.DISPLAY_SOURCES;
 
 /* The TODO list.
 - Prevent fueling blaze burners
@@ -47,8 +51,9 @@ import static net.atobaazul.sulidae_utils.SulidaeDisplaySources.DISPLAY_SOURCES;
 public class SulidaeUtils {
     // Define mod id in a common place for everything to reference
     public static final String MODID = "sulidae_utils";
+    public static final TagKey<Fluid> ALLOWED_IN_WELDER = TagKey.create(Registries.FLUID, new ResourceLocation(MODID, "allowed_in_welder"));
     // Directly reference a slf4j logger
-    private static final Logger LOGGER = LogUtils.getLogger();
+    public static final Logger LOGGER = LogUtils.getLogger();
 
     public SulidaeUtils(FMLJavaModLoadingContext context) {
         IEventBus bus = context.getModEventBus();
@@ -59,6 +64,7 @@ public class SulidaeUtils {
         DISPLAY_SOURCES.register(bus);
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
+        SulidaeItems.ITEMS.register(bus);
 
         bus.addListener(SulidaeUtils::onRegister);
     }

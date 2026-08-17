@@ -1,0 +1,6 @@
+{
+  "parent": "createbigcannons:item/cannon_welder",
+  "textures": {
+    "0": "sulidae_utils:item/welder"
+  }
+}

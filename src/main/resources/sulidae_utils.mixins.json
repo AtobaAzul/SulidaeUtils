@@ -9,7 +9,8 @@
     "BurstTrackerMixin",
     "ElectricalBurnerMixin",
     "FirmacivSloopUnderConstructionEntityMixin",
-    "MechanicalFanMixin"
+    "MechanicalFanMixin",
+    "UseWelderPacketMixin"
   ],
   "injectors": {
     "defaultRequire": 1
