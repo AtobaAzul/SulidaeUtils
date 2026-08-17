@@ -2,17 +2,26 @@ package net.atobaazul.sulidae_utils;
 
 import com.simibubi.create.infrastructure.ponder.AllCreatePonderTags;
 import com.therighthon.afc.common.blocks.AFCBlocks;
+import com.tterrag.registrate.util.entry.ItemProviderEntry;
+import net.atobaazul.sulidae_utils.registries.SulidaeItems;
 import net.createmod.ponder.api.registration.PonderPlugin;
+import net.createmod.ponder.api.registration.PonderSceneRegistrationHelper;
 import net.createmod.ponder.api.registration.PonderTagRegistrationHelper;
+import net.createmod.ponder.foundation.registration.GenericPonderSceneRegistrationHelper;
 import net.dries007.tfc.common.blocks.LargeVesselBlock;
 import net.dries007.tfc.common.blocks.TFCBlocks;
 import net.dries007.tfc.common.blocks.wood.Wood;
 import net.minecraft.resources.ResourceLocation;
+import rbasamoyai.createbigcannons.CreateBigCannons;
+import rbasamoyai.createbigcannons.ponder.CannonCraftingScenes;
+import com.tterrag.registrate.util.entry.RegistryEntry;
+
+import static net.atobaazul.sulidae_utils.SulidaeUtils.MODID;
 
 public class SulidaePonderPlugin implements PonderPlugin {
     @Override
     public String getModId() {
-        return SulidaeUtils.MODID;
+        return MODID;
     }
 
     @Override
@@ -29,6 +38,14 @@ public class SulidaePonderPlugin implements PonderPlugin {
         TFCBlocks.WOODS.forEach((wood, map) -> {
             helper.addToTag(AllCreatePonderTags.ARM_TARGETS).add(map.get(Wood.BlockType.BARREL).getId());
         });
+    }
+
+    @Override
+    public void registerScenes(PonderSceneRegistrationHelper<ResourceLocation> helper) {
+        PonderSceneRegistrationHelper<ItemProviderEntry<?>> HELPER = helper.withKeyFunction(RegistryEntry::getId);
+
+        HELPER.forComponents(SulidaeItems.WELDER)
+                .addStoryBoard(new ResourceLocation(CreateBigCannons.MOD_ID, "cannon_crafting/cannon_welder"), CannonCraftingScenes::weldingCannons);
     }
 }
 

@@ -1,3 +1,13 @@
 {
-  "item.sulidae_utils.welder": "Welding Blowtorch"
+  "item.sulidae_utils.welder": "Welding Blowtorch",
+  "sulidae_utils.ponder.cannon_crafting/cannon_welder.header": "Welding Cannons",
+  "sulidae_utils.ponder.cannon_crafting/cannon_welder.text_1": "Cannon blocks placed in survival will not connect to other cannon blocks.",
+  "sulidae_utils.ponder.cannon_crafting/cannon_welder.text_2": "The Welding Blowtorch can quickly connect two cannon blocks at a time.",
+  "sulidae_utils.ponder.cannon_crafting/cannon_welder.text_3": "Right-click two adjacent cannon blocks to weld them together.",
+  "sulidae_utils.ponder.cannon_crafting/cannon_welder.text_4": "The cannon blocks must align, connect, have the same material, and have the same cannon type. Additionally, the Welder must have fuel.",
+  "sulidae_utils.ponder.cannon_crafting/cannon_welder.text_5": "Invalid",
+  "sulidae_utils.ponder.cannon_crafting/cannon_welder.text_6": "By default, the Welding Blowtorch cannot weld some cannon materials and/or types together.",
+  "sulidae_utils.ponder.cannon_crafting/cannon_welder.text_7": "The Welding Blowtorch can weld different types of cannon.",
+  "sulidae_utils.ponder.cannon_crafting/cannon_welder.text_8": "Welding cannon blocks together can weaken certain types of cannon.",
+  "sulidae_utils.ponder.cannon_crafting/cannon_welder.text_9": "It is recommended to craft and move cannon pieces in their entirety instead."
 }

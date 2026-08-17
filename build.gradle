@@ -228,7 +228,7 @@ dependencies {
     implementation fg.deobf("curse.maven:more-create-burners-1111030:6275033")
 
     //diesel generators
-    implementation fg.deobf("curse.maven:create-diesel-generators-869316:6798614")
+    implementation fg.deobf("curse.maven:create-diesel-generators-869316:7932785")
 
     //arborfirmacraft
     implementation fg.deobf("curse.maven:arborfirmacraft-877545:6814891")

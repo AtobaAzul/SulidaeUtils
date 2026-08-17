@@ -1,16 +1,18 @@
 package net.atobaazul.sulidae_utils.registries;
 
-import net.atobaazul.sulidae_utils.SulidaeUtils;
+import com.tterrag.registrate.util.entry.ItemEntry;
 import net.atobaazul.sulidae_utils.common.item.LiquidWelderItem;
-import net.minecraft.world.item.Item;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
-
-import static net.atobaazul.sulidae_utils.SulidaeUtils.MODID;
+import static net.atobaazul.sulidae_utils.SulidaeUtils.REGISTRATE;
+import rbasamoyai.createbigcannons.ModGroup;
 
 public class SulidaeItems {
-    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MODID);
+    static { ModGroup.clearRegistrateModTab(); }
 
-    public static final RegistryObject<Item> WELDER =  ITEMS.register("welder", () -> new LiquidWelderItem(new Item.Properties().stacksTo(1)));
+    public static final ItemEntry<LiquidWelderItem> WELDER = REGISTRATE.item("welder", LiquidWelderItem::new)
+            .properties(p -> p.stacksTo(1))
+            .model((c, p) -> {})
+            .register();
+
+    public static void register() {
+    }
 }

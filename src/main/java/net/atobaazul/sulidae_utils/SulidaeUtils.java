@@ -1,18 +1,32 @@
 package net.atobaazul.sulidae_utils;
 
+import com.jesz.createdieselgenerators.CDGItems;
+import com.jesz.createdieselgenerators.CDGRegistries;
+import com.jesz.createdieselgenerators.fuel_type.FuelType;
 import com.mojang.logging.LogUtils;
+import com.simibubi.create.foundation.data.CreateRegistrate;
 import net.atobaazul.sulidae_utils.registries.SulidaeItems;
 import net.createmod.ponder.foundation.PonderIndex;
+import net.dries007.tfc.common.TFCTags;
 import net.dries007.tfc.common.capabilities.heat.HeatCapability;
+import net.dries007.tfc.util.InteractionManager;
+import net.dries007.tfc.util.events.StartFireEvent;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.IntTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluid;
@@ -24,6 +38,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -52,6 +67,8 @@ public class SulidaeUtils {
     // Define mod id in a common place for everything to reference
     public static final String MODID = "sulidae_utils";
     public static final TagKey<Fluid> ALLOWED_IN_WELDER = TagKey.create(Registries.FLUID, new ResourceLocation(MODID, "allowed_in_welder"));
+    public static final CreateRegistrate REGISTRATE = CreateRegistrate.create(MODID);
+
     // Directly reference a slf4j logger
     public static final Logger LOGGER = LogUtils.getLogger();
 
@@ -60,11 +77,11 @@ public class SulidaeUtils {
 
         // Register the commonSetup method for modloading
         bus.addListener(this::commonSetup);
-
+        REGISTRATE.registerEventListeners(bus);
         DISPLAY_SOURCES.register(bus);
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
-        SulidaeItems.ITEMS.register(bus);
+        SulidaeItems.register();
 
         bus.addListener(SulidaeUtils::onRegister);
     }
